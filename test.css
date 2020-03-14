@@ -1,0 +1,5 @@
+#blog_category .page-list-body .page-item .item-left
+{
+visibility: hidden !important;
+width:0 !important;
+}
