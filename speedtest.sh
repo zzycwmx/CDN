@@ -267,7 +267,7 @@ print_speedtest() {
     	speed_test '3633'  'Shanghai     CT'
     	speed_test '7509'  'Hangzhou     CT'
     	speed_test '19076' 'Chongqing    CT'
-    	speed_test '29071' 'Chengdu      CT'
+#     	speed_test '29071' 'Chengdu      CT'
    	speed_test '3973'  'Lanzhou      CT'
 	speed_test '27594' 'Guangzhou    CT'
 	speed_test '28225' 'Changsha     CT'
