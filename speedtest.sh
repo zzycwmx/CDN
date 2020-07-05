@@ -18,6 +18,9 @@ PLAIN='\033[0m'
 all1=0
 all2=0
 all3=0
+n1=0
+n2=0
+n3=0
 about() {
 	echo ""
 	echo " ========================================================= "
@@ -227,12 +230,16 @@ speed_test(){
 	        local num2=${reupload:0:$((`expr index "$reupload" . - 1`))}
 	        local num3=${relatency:0:$((`expr index "$relatency" . - 1`))}
             	all1=$[$all1 + $num1]
+		n1=$[$n1 + 1]
             	all2=$[$all2 + $num2]
+		n2=$[$n2 + 1]
             	all3=$[$all3 + $num3]
+		n3=$[$n3 + 1]
 		
 	        temp=$(echo "$relatency" | awk -F '.' '{print $1}')
         	if [[ ${temp} -gt 1000 ]]; then
 		all3=$[$all3 - $num3]
+		n3=$[$n3 - 1]
             	relatency=" - "
         	fi
 	        local nodeName=$2
@@ -309,9 +316,9 @@ print_speedtest() {
 	speed_test '4515'  'Shenzhen     CM'
 	speed_test '25637' 'ShangHai     CM'
 	local nodeName="Average        "
-	local REDownload=$[$all1 / 58]
-	local reupload=$[$all2 / 58]
-	local relatency=$[$all3 / 58]
+	local REDownload=$[$all1 / $n1]
+	local reupload=$[$all2 / $n2]
+	local relatency=$[$all3 / $n3]
 	printf "${YELLOW}%-18s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" " ${nodeName}" "${reupload}.00 Mbit/s" "${REDownload}.00 Mbit/s" "${relatency}.000 ms" | tee -a $log
 	rm -rf speedtest.py
 }
@@ -322,9 +329,9 @@ print_speedtest_fast() {
 	speed_test '24447' 'ShangHai 5G  CU'
 	speed_test '27249' 'Nanjing 5G   CM'
 	local nodeName="Average        "
-	local REDownload=$[$all1 / 2]
-	local reupload=$[$all2 / 2]
-	local relatency=$[$all3 / 2]
+	local REDownload=$[$all1 / $n1]
+	local reupload=$[$all2 / $n2]
+	local relatency=$[$all3 / $n3]
 	printf "${YELLOW}%-18s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" " ${nodeName}" "${reupload}.00 Mbit/s" "${REDownload}.00 Mbit/s" "${relatency}.000 ms" | tee -a $log
 	rm -rf speedtest.py
 }
