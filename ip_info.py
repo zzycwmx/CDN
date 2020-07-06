@@ -6,9 +6,9 @@ def getAddr():
     try:
         r = urllib2.open(url)
         j = json.loads(r.read())
-        return j["addr"]  
+        print j["addr"]  
     except:
-        return "None"
+        print "None"
     
 if __name__ == '__main__':
     if(len(sys.argv)>=2 and str(sys.argv[1])=="addr"):
