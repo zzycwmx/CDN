@@ -19,7 +19,7 @@ def getAddr():
     try:
         r = urllib2.urlopen(r'http://whois.pconline.com.cn/ipJson.jsp?json=true')
         j = unicode_convert(json.loads(r.read(),encoding='GBK'))
-        print j["addr".encode('utf-8')]
+        print j["addr".encode('utf-8')].strip()
     except Exception as e:
         print e
 
