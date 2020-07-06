@@ -6,11 +6,11 @@ import urllib2
 import json
 reload(sys)
 sys.setdefaultencoding('utf-8')
-url = "http://whois.pconline.com.cn/ipJson.jsp?json=true"
+url = "
 def getAddr():
     try:
-        r = urllib2.urlopen(url)
-        j = json.loads(r.read().encode('GBK'))
+        r = urllib2.urlopen(r'http://whois.pconline.com.cn/ipJson.jsp?json=true')
+        j = json.loads(r.read())
         print j["addr"]  
     except:
         print "None"
