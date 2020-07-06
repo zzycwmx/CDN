@@ -16,9 +16,12 @@ def unicode_convert(input_data):
     else:
         return input_data
 def getAddr():
+    try:
         r = urllib2.urlopen(r'http://whois.pconline.com.cn/ipJson.jsp?json=true')
         j = unicode_convert(json.loads(r.read(),encoding='GBK'))
         print j["addr".encode('utf-8')]
+    except Exception as e:
+        print e
 
 if __name__ == '__main__':
     if(len(sys.argv)>=2 and str(sys.argv[1])=="addr"):
