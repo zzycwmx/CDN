@@ -6,7 +6,6 @@ import urllib2
 import json
 reload(sys)
 sys.setdefaultencoding('utf-8')
-url = "
 def getAddr():
     try:
         r = urllib2.urlopen(r'http://whois.pconline.com.cn/ipJson.jsp?json=true')
