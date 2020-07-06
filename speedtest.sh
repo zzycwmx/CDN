@@ -168,6 +168,12 @@ benchinit() {
 		wget --no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/tools.py > /dev/null 2>&1
 	fi
 	chmod a+rx tools.py
+	
+	if  [ ! -e 'ip_info.py' ]; then
+		echo " Installing ip_info.py ..."
+		wget --no-check-certificate https://raw.githubusercontent.com/zzycwmx/CDN/master/ip_info.py > /dev/null 2>&1
+	fi
+	chmod a+rx ip_info.py
 
 	# install fast.com-cli
 	if  [ ! -e 'fast_com.py' ]; then
@@ -464,21 +470,14 @@ ip_info4(){
 		countryCode=$(python tools.py ipip country_code)
 		region=$(python tools.py ipip province)
 	else
-		country=$(python tools.py geoip country)
-		city=$(python tools.py geoip city)
-		countryCode=$(python tools.py geoip countryCode)
-		region=$(python tools.py geoip regionName)	
-	fi
-	if [ -z "$city" ]; then
-		city=${region}
+	    addr=$(python ip_info.py addr)
 	fi
 
 	echo -e " ASN & ISP            : ${SKYBLUE}$asn, $isp${PLAIN}" | tee -a $log
 	echo -e " Organization         : ${YELLOW}$org${PLAIN}" | tee -a $log
-	echo -e " Location             : ${SKYBLUE}$city, ${YELLOW}$country / $countryCode${PLAIN}" | tee -a $log
-	echo -e " Region               : ${SKYBLUE}$region${PLAIN}" | tee -a $log
-
+	echo -e " Addr                 : ${WHITE}$addr" | tee -a $log
 	rm -rf tools.py
+	rm -rf ip_info.py
 	rm -rf ip_json.json
 }
 
