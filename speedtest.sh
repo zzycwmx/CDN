@@ -580,7 +580,7 @@ print_io() {
 	fi
 
 	if [[ $writemb != "1" ]]; then
-		echo -n " I/O Speed( $writemb_size )   : " | tee -a $log
+		echo -n " ${WHITE}I/O Speed( $writemb_size )   : " | tee -a $log
 		io1=$( io_test $writemb )
 		echo -e "${YELLOW}$io1${PLAIN}" | tee -a $log
 		echo -n " I/O Speed( $writemb_size )   : " | tee -a $log
