@@ -11,7 +11,7 @@ def getAddr():
     try:
         r = urllib2.urlopen(r'http://whois.pconline.com.cn/ipJson.jsp?json=true')
         j = json.loads(r.read())
-        print j["addr"]  
+        print j["addr".encode('utf-8')]  
     except:
         print "None"
     
