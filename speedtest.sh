@@ -475,7 +475,7 @@ ip_info4(){
 
 	echo -e " ASN & ISP            : ${SKYBLUE}$asn, $isp${PLAIN}" | tee -a $log
 	echo -e " Organization         : ${YELLOW}$org${PLAIN}" | tee -a $log
-	echo -e " Addr                 : ${WHITE}$addr" | tee -a $log
+	echo -e " Addr                 : ${SKYBLUE}$addr" | tee -a $log
 	rm -rf tools.py
 	rm -rf ip_info.py
 	rm -rf ip_json.json
