@@ -20,8 +20,8 @@ def getAddr():
         r = urllib2.urlopen(r'http://whois.pconline.com.cn/ipJson.jsp?json=true')
         j = json.loads(unicode_convert(r.read()))
         print j["addr".encode('utf-8')]  
-    except:
-        print "None"
+    except Exception as e:
+        print e
     
 if __name__ == '__main__':
     if(len(sys.argv)>=2 and str(sys.argv[1])=="addr"):
