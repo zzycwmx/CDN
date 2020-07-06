@@ -4,7 +4,7 @@ import json
 url = "http://whois.pconline.com.cn/ipJson.jsp?json=true"
 def getAddr():
     try:
-        r = urllib2.open(url)
+        r = urllib2.urlopen(url)
         j = json.loads(r.read())
         print j["addr"]  
     except:
