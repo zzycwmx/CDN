@@ -1,6 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
 import sys
 import urllib2
 import json
+reload(sys)
+sys.setdefaultencoding('utf-8')
 url = "http://whois.pconline.com.cn/ipJson.jsp?json=true"
 def getAddr():
     try:
