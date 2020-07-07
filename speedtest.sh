@@ -787,7 +787,7 @@ fast_bench(){
 
 
 
-log="$HOME/superbench_$start.log"
+log="$HOME/superbench_$(date +%s).log"
 true > $log
 
 case $1 in
