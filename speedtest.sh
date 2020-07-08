@@ -790,6 +790,7 @@ fast_bench(){
 if [ ! -d "$HOME/superbench_log" ]; then
   mkdir "$HOME/superbench_log"
 fi
+
 log="$HOME/superbench_log/superbench_$(date +%Y%m%d%H%M).log"
 true > $log
 
