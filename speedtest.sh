@@ -470,12 +470,18 @@ ip_info4(){
 		countryCode=$(python tools.py ipip country_code)
 		region=$(python tools.py ipip province)
 	else
-	    addr=$(python ip_info.py addr)
+		country=$(python tools.py geoip country)
+		city=$(python tools.py geoip city)
+		countryCode=$(python tools.py geoip countryCode)
+		region=$(python tools.py geoip regionName)
+	    	addr=$(python ip_info.py addr)
 	fi
 
 	echo -e " ASN & ISP            : ${SKYBLUE}$asn, $isp${PLAIN}" | tee -a $log
 	echo -e " Organization         : ${YELLOW}$org${PLAIN}" | tee -a $log
 	echo -e " Addr                 : ${SKYBLUE}$addr${PLAIN}" | tee -a $log
+	echo -e " Location             : ${SKYBLUE}$city, ${YELLOW}$country / $countryCode${PLAIN}" | tee -a $log
+	echo -e " Region               : ${SKYBLUE}$region${PLAIN}" | tee -a $log
 	rm -rf tools.py
 	rm -rf ip_info.py
 	rm -rf ip_json.json
