@@ -332,8 +332,8 @@ print_speedtest_fast() {
 	printf "%-18s%-18s%-20s%-12s\n" " Node Name" "Upload Speed" "Download Speed" "Latency" | tee -a $log
         speed_test '' 'Speedtest.net'
 	speed_test '19076' 'Chongqing    CT'
-	speed_test '24447' 'ShangHai 5G  CU'
-	speed_test '27249' 'Nanjing 5G   CM'
+	speed_test '24447' 'ShangHai     CU'
+	speed_test '27249' 'Nanjing      CM'
 	local nodeName="Average        "
 	local REDownload=$[$all1 / $n1]
 	local reupload=$[$all2 / $n2]
