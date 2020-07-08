@@ -790,6 +790,7 @@ fast_bench(){
 static_dir="$HOME/superbench_log"
 if [ ! -d $staic_dir ]; then
   sudo mkdir -p -m 755 $static_dir
+  echo "sudo mkdir -p -m 755 ${static_dir} done"
 fi
 log="$HOME/superbench_log/superbench_$(date +%Y%m%d%H%M).log"
 true > $log
