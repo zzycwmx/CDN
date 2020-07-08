@@ -332,6 +332,7 @@ print_speedtest() {
 print_speedtest_fast() {
 	printf "%-18s%-18s%-20s%-12s\n" " Node Name" "Upload Speed" "Download Speed" "Latency" | tee -a $log
         speed_test '' 'Speedtest.net'
+	speed_test '34115' 'TianJin      CT'
 	speed_test '24447' 'ShangHai 5G  CU'
 	speed_test '27249' 'Nanjing 5G   CM'
 	local nodeName="Average        "
@@ -786,8 +787,11 @@ fast_bench(){
 
 
 
-
-log="$HOME/superbench_$(date +%Y%m%d%H%M).log.log"
+static_dir="$HOME/superbench_log"
+if [ ! -d $staic_dir ]; then
+  sudo mkdir -p -m 755 $static_dir
+fi
+log="$HOME/superbench_log/superbench_$(date +%Y%m%d%H%M).log"
 true > $log
 
 case $1 in
