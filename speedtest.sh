@@ -153,4 +153,4 @@ case $id in
         echo "请重新选择"
 esac
 done
-rm -f $0
+cl
