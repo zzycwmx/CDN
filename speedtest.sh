@@ -8,8 +8,8 @@ fi
 trap "cl" 2
 cl () {
     echo ""
-    echo "clear vpstest ..."
-    rm -f vpstest
+    echo "clear..."
+    rm -f $0
     echo "OK"
     exit 0
 }
@@ -153,4 +153,4 @@ case $id in
         echo "请重新选择"
 esac
 done
-rm -f vpstest
+rm -f $0
