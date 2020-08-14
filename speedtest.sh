@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "使用方法: wget vpstest.cn/it && bash it"
+echo "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest"
 DIR=${HOME}/vpstest
 if [ ! -d $DIR ];then
     mkdir $DIR
