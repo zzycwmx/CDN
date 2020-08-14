@@ -9,7 +9,7 @@ trap "cl" 2
 cl () {
     echo ""
     echo "clear it ..."
-    rm -f it
+    rm -f vpstest
     echo "OK"
     exit 0
 }
@@ -153,4 +153,4 @@ case $id in
         echo "请重新选择"
 esac
 done
-rm -f it
+rm -f vpstest
