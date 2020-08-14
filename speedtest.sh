@@ -1,6 +1,5 @@
 #!/bin/bash
 clear
-echo "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest"
 DIR=${HOME}/vpsTest
 if [ ! -d $DIR ];then
     mkdir $DIR
@@ -29,27 +28,78 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
 	    release="centos"
 fi
+out1 () {
+	color=$1
+	what=$2
+	array=("r" "g" "y" "b" "p" "s" "w")
+	for i in `seq 31 37`;do
+		if [ ${array[$(($i-31))]} == $color ] ; then
+			echo -ne "\e[1;${i}m${what}\e[0m"
+			break
+		fi
+	done
+}
+out0 () {
+	color=$1
+	what=$2
+	array=("r" "g" "y" "b" "p" "s" "w")
+	for i in `seq 31 37`;do
+		if [ ${array[$(($i-31))]} == $color ] ; then
+			echo -ne "\e[0;${i}m${what}\e[0m"
+			break
+		fi
+	done
+}
 # id=0
 # if [ ! $# -eq 0 ];then
 #     id=$1
 # fi
+out0 s "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest\n"
 while [ 1 -eq 1 ];do
-echo "----------------------------"
-echo "|请选择需要测试的脚本序号: |"
-echo "|1. bench.sh               |"
-echo "|2. LemonBench             |"
-echo "|3. superspeed             |"
-echo "|4. superbench修复版       |"
-echo "|5. 91yuntest              |"
-echo "|6. ZBench                 |"
-echo "|7. superbench修复+多节点版|"
-echo "|8. UnixBench              |"
-echo "|9. GeekBench5             |"
-echo "|10.kos回程测试            |"
-echo "|11.超内存测试             |"
-echo "|12.路由测试(需提供目标ip) |"
-echo "|0. 退出                   |"
-echo "----------------------------"
+out1 y "-----------------------------\n"
+out1 y "|"
+out0 y " 请选择需要测试的脚本序号: "
+out1 y "|\n"
+out1 y "|"
+out1 b " 1. bench.sh               "
+out1 y "|\n"
+out1 y "|"
+out1 b " 2. LemonBench             "
+out1 y "|\n"
+out1 y "|"
+out1 b " 3. superspeed             "
+out1 y "|\n"
+out1 y "|"
+out1 b " 4. superbench修复版       "
+out1 y "|\n"
+out1 y "|"
+out1 b " 5. 91yuntest              "
+out1 y "|\n"
+out1 y "|"
+out1 b " 6. ZBench                 "
+out1 y "|\n"
+out1 y "|"
+out1 b " 7. superbench修复+多节点版"
+out1 y "|\n"
+out1 y "|"
+out1 b " 8. UnixBench              "
+out1 y "|\n"
+out1 y "|"
+out1 b " 9. GeekBench5             "
+out1 y "|\n"
+out1 y "|"
+out1 b " 10.kos回程测试            "
+out1 y "|\n"
+out1 y "|"
+out1 b " 11.超内存测试             "
+out1 y "|\n"
+out1 y "|"
+out1 b " 12.路由测试(需提供目标ip) "
+out1 y "|\n"
+out1 y "|"
+out1 r " 0. 退出                   "
+out1 y "|\n"
+out1 y "-----------------------------\n"
 read id
 case $id in
     0)
@@ -57,24 +107,28 @@ case $id in
         ;;
     1)
         wget -qO- http://bench.sh | bash
+        break
         ;;
     2)
         if [ ! -f ${DIR}/LemonBench.sh ]; then
             curl -fsL https://ilemonra.in/LemonBenchIntl > ${DIR}/LemonBench.sh
         fi
         bash ${DIR}/LemonBench.sh fast
+        break
         ;;
     3)
         while [ ! -f ${DIR}/superspeed.sh ]; do
             wget -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/ernisn/superspeed/master/superspeed.sh
         done
         bash ${DIR}/superspeed.sh
+        break
         ;;
     4)
         while [ ! -f ${DIR}/superbench.sh ]; do
             wget -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/superbench.sh
         done
         bash ${DIR}/superbench.sh
+        break
         ;;
     5)
         while [ ! -f ./test.sh ]; do
@@ -92,36 +146,42 @@ case $id in
         # echo $st
         # bash ${DIR}/91yuntest.sh -i "io,bandwidth,chinabw,download,traceroute,backtraceroute,allping,gotoping,benchtest"
         bash ./test.sh -i $st
+        break
         ;;
     6)
         while [ ! -f ${DIR}/ZBench-CN.sh ]; do
             wget -N -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh
         done
         bash ${DIR}/ZBench-CN.sh
+        break
         ;;
     7)
         while [ ! -f ${DIR}/superbench2.sh ]; do
             wget -N -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/zzycwmx/CDN/master/superbench2.sh
         done
         bash ${DIR}/superbench2.sh
+        break
         ;;
     8)
         while [ ! -f ${DIR}/unixbench.sh ]; do
             wget -P ${DIR} --no-check-certificate https://github.com/teddysun/across/raw/master/unixbench.sh && chmod +x ${DIR}/unixbench.sh
         done
         ${DIR}/unixbench.sh
+        break
         ;;
     9)
         while [ ! -d ${DIR}/Geekbench-5.2.3-Linux ]; do
             wget -P ${DIR} http://cdn.geekbench.com/Geekbench-5.2.3-Linux.tar.gz && tar -xzvf ${DIR}/Geekbench-5.2.3-Linux.tar.gz -C ${DIR}
         done
         ${DIR}/Geekbench-5.2.3-Linux/geekbench5
+        break
         ;;
     10)
         if [ -f ${DIR}/kos ]; then
             wget -q kos.f2k.pub -O ${DIR}/kos
         fi
         sh ${DIR}/kos
+        break
         ;;
     11)
         if [ $release == "centos" ]; then
@@ -136,6 +196,7 @@ case $id in
             g++ -l stdc++ ${DIR}/memtester.cpp -o ${DIR}/memtester.out
         done
         ${DIR}/memtester.out
+        break
         ;;
     12)
         if [ $release == "centos" ]; then
@@ -146,13 +207,15 @@ case $id in
         fi
         while [ ! -f ${DIR}/besttrace ]; do
             wget https://cdn.ipip.net/17mon/besttrace4linux.zip && unzip besttrace4linux.zip -d ${DIR}/ && rm -f besttrace4linux.zip
+            chmod +x ${DIR}/besttrace
         done
         read -p "请输入目标IP:" ip
         ${DIR}/besttrace -q 1 ip
+        break
         ;;
     *)
         clear
-        echo "请重新选择"
+        out0 p "请重新选择\n"
 esac
 done
 cl
