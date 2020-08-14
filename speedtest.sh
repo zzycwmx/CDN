@@ -177,7 +177,7 @@ case $id in
         break
         ;;
     10)
-        if [ -f ${DIR}/kos ]; then
+        if [ ! -f ${DIR}/kos ]; then
             wget -q kos.f2k.pub -O ${DIR}/kos
         fi
         sh ${DIR}/kos
