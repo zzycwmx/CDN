@@ -232,11 +232,11 @@ case $id in
         rm -f ${DIR}/*speed*
         rm -f ${DIR}/ip_info.py
         rm -f ${DIR}/Geekbench-5.2.3-Linux.tar.gz
-        rm -rf 91yuntest*
-        rm -rf speedtest_original.py
-        rm -rf ip_info.py
-        rm -rf speedtest.tgz
-        rm -rf test*
+        rm -rf ${DIR}/91yuntest*
+        rm -rf ${DIR}/speedtest_original.py
+        rm -rf ${DIR}/ip_info.py
+        rm -rf ${DIR}/speedtest.tgz
+        rm -rf ${DIR}/test*
         rm -rf ${HOME}/superbench.log
         rm -rf ${HOME}/KOS*
         rm -rf ${HOME}/kos*
@@ -246,11 +246,6 @@ case $id in
         ;;
     14)
         rm -rf ${DIR}
-        rm -rf 91yuntest*
-        rm -rf speedtest_original.py
-        rm -rf ip_info.py
-        rm -rf speedtest.tgz
-        rm -rf test*
         rm -rf ${HOME}/superbench.log
         rm -rf ${HOME}/KOS*
         rm -rf ${HOME}/kos*
