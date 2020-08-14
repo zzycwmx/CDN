@@ -8,7 +8,7 @@ fi
 trap "cl" 2
 cl () {
     echo ""
-    echo "clear it ..."
+    echo "clear vpstest ..."
     rm -f vpstest
     echo "OK"
     exit 0
