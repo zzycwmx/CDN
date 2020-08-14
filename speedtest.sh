@@ -7,7 +7,7 @@ if [ ! -d $DIR ];then
 fi
 trap "cl" 2
 cl () {
-    echo ""
+    echo "..."
     echo "clear..."
     rm -f $0
     echo "OK"
@@ -34,20 +34,22 @@ fi
 #     id=$1
 # fi
 while [ 1 -eq 1 ];do
-echo "请选择需要测试的脚本序号:"
-echo "1. bench.sh"
-echo "2. LemonBench"
-echo "3. superspeed"
-echo "4. superbench修复版"
-echo "5. 91yuntest"
-echo "6. ZBench"
-echo "7. superbench修复+多节点版"
-echo "8. UnixBench"
-echo "9. GeekBench5"
-echo "10.kos回程测试"
-echo "11.超内存测试"
-echo "12.路由测试(需提供目标ip)"
-echo "0. 退出"
+echo "----------------------------"
+echo "|请选择需要测试的脚本序号: |"
+echo "|1. bench.sh               |"
+echo "|2. LemonBench             |"
+echo "|3. superspeed             |"
+echo "|4. superbench修复版       |"
+echo "|5. 91yuntest              |"
+echo "|6. ZBench                 |"
+echo "|7. superbench修复+多节点版|"
+echo "|8. UnixBench              |"
+echo "|9. GeekBench5             |"
+echo "|10.kos回程测试            |"
+echo "|11.超内存测试             |"
+echo "|12.路由测试(需提供目标ip) |"
+echo "|0. 退出                   |"
+echo "----------------------------"
 read id
 case $id in
     0)
@@ -98,10 +100,10 @@ case $id in
         bash ${DIR}/ZBench-CN.sh
         ;;
     7)
-        while [ ! -f ${DIR}/speedtest.sh ]; do
-            wget -N -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/zzycwmx/CDN/master/speedtest.sh
+        while [ ! -f ${DIR}/superbench2.sh ]; do
+            wget -N -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/zzycwmx/CDN/master/superbench2.sh
         done
-        bash ${DIR}/speedtest.sh
+        bash ${DIR}/superbench2.sh
         ;;
     8)
         while [ ! -f ${DIR}/unixbench.sh ]; do
