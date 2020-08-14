@@ -21,6 +21,28 @@ all3=0
 n1=0
 n2=0
 n3=0
+add () {
+    num=$#
+    tmp=0
+    for i in `seq 1 $num`;do
+        tmp=$(awk 'BEGIN{print ("'$tmp'"+"'$1'")}')
+        shift
+    done
+}
+sub () {
+    tmp=$(awk 'BEGIN{print ("'$1'"-"'$2'")}')
+}
+mul () {
+    num=$#
+    tmp=1
+    for i in `seq 1 $num`;do
+        tmp=$(awk 'BEGIN{print ("'$tmp'"*"'$1'")}')
+        shift
+    done
+}
+div () {
+    tmp=$(awk 'BEGIN{printf "%.2f",("'$1'"/"'$2'")}')
+}
 about() {
 	echo ""
 	echo " ========================================================= "
@@ -148,31 +170,31 @@ benchinit() {
 	#fi
 
 	# install speedtest-cli
-	if  [ ! -e 'speedtest.py' ]; then
+	while  [ ! -e 'speedtest.py' ]; do
 		echo " Installing Speedtest-cli ..."
 		wget --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/speedtest.py > /dev/null 2>&1
-	fi
+	done
 	chmod a+rx speedtest.py
 	
 	# install speedtest-cli(original version)
-	if  [ ! -e 'speedtest_original.py' ]; then
+	while  [ ! -e 'speedtest_original.py' ]; do
 		echo " Installing speedtest-cli(original version) ..."
 		wget --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/speedtest_original.py > /dev/null 2>&1
-	fi
+	done
 	chmod a+rx speedtest_original.py
 
 
 	# install tools.py
-	if  [ ! -e 'tools.py' ]; then
+	while  [ ! -e 'tools.py' ]; do
 		echo " Installing tools.py ..."
 		wget --no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/tools.py > /dev/null 2>&1
-	fi
+	done
 	chmod a+rx tools.py
 	
-	if  [ ! -e 'ip_info.py' ]; then
+	while  [ ! -e 'ip_info.py' ]; do
 		echo " Installing ip_info.py ..."
 		wget --no-check-certificate https://raw.githubusercontent.com/zzycwmx/CDN/master/ip_info.py > /dev/null 2>&1
-	fi
+	done
 	chmod a+rx ip_info.py
 
 	# install fast.com-cli
@@ -232,26 +254,34 @@ speed_test(){
 	        local relatency=$(echo "$temp" | awk -F ':' '/Hosted/{print $2}')
 	        #local relatency=$(pingtest $3)
 		
-		local num1=${REDownload:0:$((`expr index "$REDownload" . - 1`))}
-	        local num2=${reupload:0:$((`expr index "$reupload" . - 1`))}
-	        local num3=${relatency:0:$((`expr index "$relatency" . - 1`))}
-            	all1=$[$all1 + $num1]
-		n1=$[$n1 + 1]
-            	all2=$[$all2 + $num2]
-		n2=$[$n2 + 1]
-            	all3=$[$all3 + $num3]
-		n3=$[$n3 + 1]
-		
-	        temp=$(echo "$relatency" | awk -F '.' '{print $1}')
-        	if [[ ${temp} -gt 1000 ]]; then
-		all3=$[$all3 - $num3]
-		n3=$[$n3 - 1]
-            	relatency=" - "
-        	fi
+		    local num1=${REDownload:0:$((`expr index "$REDownload" "M" - 1`))}
+	        local num2=${reupload:0:$((`expr index "$reupload" "M" - 1`))}
+	        local num3=${relatency:0:$((`expr index "$relatency" "m" - 1`))}
+	        
 	        local nodeName=$2
 
 	        temp=$(echo "${REDownload}" | awk -F ' ' '{print $1}')
 	        if [[ $(awk -v num1=${temp} -v num2=0 'BEGIN{print(num1>num2)?"1":"0"}') -eq 1 ]]; then
+	        
+		        add $all1 $num1
+		        all1=$tmp
+		        n1=$[$n1 + 1]
+		        
+		        add $all2 $num2
+		        all2=$tmp
+		        n2=$[$n2 + 1]
+		        
+		        add $all3 $num3
+	            all3=$tmp
+		        n3=$[$n3 + 1]
+	            temp=$(echo "$relatency" | awk -F '.' '{print $1}')
+        	    if [[ ${temp} -gt 1000 ]]; then
+	                sub $all3 $num3
+	                all3=$tmp
+		            n3=$[$n3 - 1]
+            	    relatency=" - "
+        	    fi
+        	    
 	        	printf "${YELLOW}%-17s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" " ${nodeName}" "${reupload}" "${REDownload}" "${relatency}" | tee -a $log
 			fi
 		else
@@ -321,10 +351,13 @@ print_speedtest() {
 	speed_test '4515'  'Shenzhen     CM'
 	speed_test '25637' 'ShangHai     CM'
 	local nodeName="Average        "
-	local REDownload=$[$all1 / $n1]
-	local reupload=$[$all2 / $n2]
-	local relatency=$[$all3 / $n3]
-	printf "${YELLOW}%-18s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" " ${nodeName}" "${reupload}.00 Mbit/s" "${REDownload}.00 Mbit/s" "${relatency}.000 ms" | tee -a $log
+	div $all1 $n1
+	local REDownload=$tmp
+	div $all2 $n2
+	local reupload=$tmp
+	div $all3 $n3
+	local relatency=$tmp
+	printf "${YELLOW}%-18s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" " ${nodeName}" "${reupload} Mbit/s" "${REDownload} Mbit/s" "${relatency} ms" | tee -a $log
 	rm -rf speedtest.py
 }
 
@@ -761,6 +794,7 @@ bench_all(){
 	ip_info4;
 	next;
 	print_io;
+	clear
 	next;
 	print_speedtest;
 	next;
