@@ -58,46 +58,55 @@ out0 s "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && b
 while [ 1 -eq 1 ];do
 out1 y "-----------------------------\n"
 out1 y "|"
-out0 y " 请选择需要测试的脚本序号: "
+out0 y " 请选择需要测试的脚本序号:  "
 out1 y "|\n"
 out1 y "|"
-out1 b " 1. bench.sh               "
+out1 b " 1. bench.sh                "
 out1 y "|\n"
 out1 y "|"
-out1 b " 2. LemonBench             "
+out1 b " 2. LemonBench              "
 out1 y "|\n"
 out1 y "|"
-out1 b " 3. superspeed             "
+out1 b " 3. superspeed              "
 out1 y "|\n"
 out1 y "|"
-out1 b " 4. superbench修复版       "
+out1 b " 4. superbench修复版        "
 out1 y "|\n"
 out1 y "|"
-out1 b " 5. 91yuntest              "
+out1 b " 5. 91yuntest               "
 out1 y "|\n"
 out1 y "|"
-out1 b " 6. ZBench                 "
+out1 b " 6. ZBench                  "
 out1 y "|\n"
 out1 y "|"
-out1 b " 7. superbench修复+多节点版"
+out1 b " 7. superbench修复+多节点版 "
 out1 y "|\n"
 out1 y "|"
-out1 b " 8. UnixBench              "
+out1 b " 8. UnixBench               "
 out1 y "|\n"
 out1 y "|"
-out1 b " 9. GeekBench5             "
+out1 b " 9. GeekBench5              "
 out1 y "|\n"
 out1 y "|"
-out1 b " 10.kos回程测试            "
+out1 b " 10.kos回程测试             "
 out1 y "|\n"
 out1 y "|"
-out1 b " 11.超内存测试             "
+out1 b " 11.超内存测试              "
 out1 y "|\n"
 out1 y "|"
-out1 b " 12.路由测试(需提供目标ip) "
+out1 b " 12.路由测试(需提供目标ip)  "
 out1 y "|\n"
 out1 y "|"
-out1 r " 0. 退出                   "
+out1 r " 13.清空残余文件(保留大文件)"
+out1 y "|\n"
+out1 y "|"
+out1 r " 14.清空残余文件(全部清空)  "
+out1 y "|\n"
+out1 y "|"
+out1 r " 15.卸载kos                 "
+out1 y "|\n"
+out1 y "|"
+out1 r " 0. 退出                    "
 out1 y "|\n"
 out1 y "-----------------------------\n"
 read id
@@ -176,7 +185,7 @@ case $id in
         ${DIR}/Geekbench-5.2.3-Linux/geekbench5
         break
         ;;
-    10)
+    10|15)
         if [ ! -f ${DIR}/kos ]; then
             wget -q kos.f2k.pub -O ${DIR}/kos
         fi
@@ -212,6 +221,41 @@ case $id in
         read -p "请输入目标IP:" ip
         ${DIR}/besttrace -q 1 ip
         break
+        ;;
+    13)
+        rm -f ${DIR}/memtester*
+        rm -f ${DIR}/kos
+        rm -f ${DIR}/superbench*
+        rm -f ${DIR}/ZBench-CN.sh
+        rm -f ${DIR}/LemonBench.sh
+        rm -f ${DIR}/*speed*
+        rm -f ${DIR}/ip_info.py
+        rm -f ${DIR}/Geekbench-5.2.3-Linux.tar.gz
+        rm -rf 91yuntest*
+        rm -rf speedtest_original.py
+        rm -rf ip_info.py
+        rm -rf speedtest.tgz
+        rm -rf test*
+        rm -rf ${HOME}/superbench.log
+        rm -rf ${HOME}/KOS*
+        rm -rf ${HOME}/kos*
+        rm -rf ${HOME}/superbench_log
+        clear
+        out0 p "清理完成\n"
+        ;;
+    14)
+        rm -rf ${DIR}
+        rm -rf 91yuntest*
+        rm -rf speedtest_original.py
+        rm -rf ip_info.py
+        rm -rf speedtest.tgz
+        rm -rf test*
+        rm -rf ${HOME}/superbench.log
+        rm -rf ${HOME}/KOS*
+        rm -rf ${HOME}/kos*
+        rm -rf ${HOME}/superbench_log
+        clear
+        out0 p "清理完成\n"
         ;;
     *)
         clear
