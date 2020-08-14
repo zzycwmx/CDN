@@ -719,8 +719,7 @@ print_intro() {
 	printf " Mode  : \e${GREEN}%s\e${PLAIN}    Version : \e${GREEN}%s${PLAIN}\n" $mode_name 1.1.6 | tee -a $log
 	printf ' Usage : wget -qO- git.io/superbench.sh | bash\n' | tee -a $log
 	printf ' Fixed bugs version usage : wget -qO- https://git.io/Jvh0J | bash\n' | tee -a $log
-	printf ' 添加更多节点版本 快速： wget https://git.io/JJILI -q && bash JJILI -fast && rm -rf JJILI \n' | tee -a $log
-	printf ' 添加更多节点版本 普通： wget -qO- https://git.io/JJILI | bash \n' | tee -a $log
+	printf ' 添加更多节点版本： wget -qO- git.io/vpstest | bash \n' | tee -a $log
 	printf ' Fixed version 3\n' | tee -a $log
 }
 
