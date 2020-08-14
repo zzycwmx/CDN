@@ -4,6 +4,7 @@ DIR=${HOME}/vpsTest
 if [ ! -d $DIR ];then
     mkdir $DIR
 fi
+cd $DIR
 trap "cl" 2
 cl () {
     echo "..."
