@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 echo "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest"
-DIR=${HOME}/vpstest
+DIR=${HOME}/vpsTest
 if [ ! -d $DIR ];then
     mkdir $DIR
 fi
@@ -142,11 +142,11 @@ case $id in
             apt-get -y update
             apt-get install wget unzip -y
         fi
-        while [ ! -f ${HOME}/vpstest/besttrace ]; do
-            wget https://cdn.ipip.net/17mon/besttrace4linux.zip && unzip besttrace4linux.zip -d ${HOME}/vpstest/ && rm -f besttrace4linux.zip
+        while [ ! -f ${DIR}/besttrace ]; do
+            wget https://cdn.ipip.net/17mon/besttrace4linux.zip && unzip besttrace4linux.zip -d ${DIR}/ && rm -f besttrace4linux.zip
         done
         read -p "请输入目标IP:" ip
-        ${HOME}/vpstest/besttrace -q 1 ip
+        ${DIR}/besttrace -q 1 ip
         ;;
     *)
         clear
