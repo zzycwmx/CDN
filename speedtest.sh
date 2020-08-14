@@ -4,12 +4,13 @@ DIR=${HOME}/vpsTest
 if [ ! -d $DIR ];then
     mkdir $DIR
 fi
+cDIR=`pwd`
 cd $DIR
 trap "cl" 2
 cl () {
     echo "..."
     echo "clear..."
-    rm -f $0
+    rm -f $cDIR/$0
     echo "OK"
     exit 0
 }
