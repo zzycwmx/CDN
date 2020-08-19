@@ -202,8 +202,10 @@ case $id in
             apt-get -y update
             apt-get install wget build-essential -y
         fi
-        while [ ! -f ${DIR}/memtester.out ]; do
+        while [ ! -f ${DIR}/memtester.cpp ]; do
             wget --no-check-certificate -P ${DIR} https://raw.githubusercontent.com/FunctionClub/Memtester/master/memtester.cpp
+        done
+        while [ ! -f ${DIR}/memtester.out ]; do
             g++ -l stdc++ ${DIR}/memtester.cpp -o ${DIR}/memtester.out
         done
         ${DIR}/memtester.out
