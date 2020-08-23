@@ -135,11 +135,13 @@ case $id in
         break
         ;;
     4)
-        while [ ! -f ${DIR}/superbench.sh ]; do
-            wget -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/superbench.sh
-        done
-        bash ${DIR}/superbench.sh
-        break
+        # while [ ! -f ${DIR}/superbench.sh ]; do
+        #     wget -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/superbench.sh
+        # done
+        # bash ${DIR}/superbench.sh
+        # break
+        clear
+        out0 p "原作者已删除该脚本，请重新选择\n"
         ;;
     5)
         while [ ! -f ./test.sh ]; do
