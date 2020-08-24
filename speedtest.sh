@@ -57,6 +57,7 @@ out0 () {
 #     id=$1
 # fi
 out0 s "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest\n"
+out0 s "bug记录: 7已修复，现已可以正常使用\n"
 while [ 1 -eq 1 ];do
 out1 y "-----------------------------\n"
 out1 y "|"
@@ -174,8 +175,8 @@ case $id in
         done
         bash ${DIR}/superbench2.sh
         break
-#         clear
-#         out0 p "原作者已删除该脚本，请重新选择\n"
+        # clear
+        # out0 p "原作者已删除该脚本，请重新选择\n"
         ;;
     8)
         while [ ! -f ${DIR}/unixbench.sh ]; do
