@@ -57,7 +57,7 @@ out0 () {
 #     id=$1
 # fi
 out0 s "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest\n"
-out0 s "bug记录: 7已修复，现已可以正常使用\n"
+out0 s "7已修复，现已可以正常使用\n"
 while [ 1 -eq 1 ];do
 out1 y "-----------------------------\n"
 out1 y "|"
