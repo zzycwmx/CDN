@@ -57,7 +57,7 @@ out0 () {
 #     id=$1
 # fi
 out0 s "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest\n"
-out0 s "7已修复，请清空残余文件后使用\n"
+out0 r "7已修复，请清空残余文件后使用\n"
 while [ 1 -eq 1 ];do
 out1 y "-----------------------------\n"
 out1 y "|"
