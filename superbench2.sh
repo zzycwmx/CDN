@@ -172,16 +172,16 @@ benchinit() {
 	# install speedtest-cli
 	while  [ ! -e 'speedtest.py' ]; do
 		echo " Installing Speedtest-cli ..."
-		wget --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/speedtest.py > /dev/null 2>&1
+		wget --no-check-certificate https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py > /dev/null 2>&1
 	done
 	chmod a+rx speedtest.py
 	
 	# install speedtest-cli(original version)
-	while  [ ! -e 'speedtest_original.py' ]; do
-		echo " Installing speedtest-cli(original version) ..."
-		wget --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/speedtest_original.py > /dev/null 2>&1
-	done
-	chmod a+rx speedtest_original.py
+# 	while  [ ! -e 'speedtest_original.py' ]; do
+# 		echo " Installing speedtest-cli(original version) ..."
+# 		wget --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/speedtest_original.py > /dev/null 2>&1
+# 	done
+# 	chmod a+rx speedtest_original.py
 
 
 	# install tools.py
@@ -224,7 +224,7 @@ next() {
 
 speed_test(){
 	if [[ $1 == '' ]]; then
-		temp=$(python speedtest_original.py --share 2>&1)
+		temp=$(python speedtest.py --share 2>&1)
 		is_down=$(echo "$temp" | grep 'Download')
 		result_speed=$(echo "$temp" | awk -F ' ' '/results/{print $3}')
 		if [[ ${is_down} ]]; then
