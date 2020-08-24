@@ -224,7 +224,7 @@ next() {
 
 speed_test(){
 	if [[ $1 == '' ]]; then
-		temp=$(python speedtest.py --share 2>&1)
+		temp=$(python speedtest_original.py --share 2>&1)
 		is_down=$(echo "$temp" | grep 'Download')
 		result_speed=$(echo "$temp" | awk -F ' ' '/results/{print $3}')
 		if [[ ${is_down} ]]; then
