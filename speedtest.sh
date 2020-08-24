@@ -169,13 +169,13 @@ case $id in
         break
         ;;
     7)
-        # while [ ! -f ${DIR}/superbench2.sh ]; do
-        #     wget -N -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/zzycwmx/CDN/master/superbench2.sh
-        # done
-        # bash ${DIR}/superbench2.sh
-        # break
-        clear
-        out0 p "原作者已删除该脚本，请重新选择\n"
+        while [ ! -f ${DIR}/superbench2.sh ]; do
+            wget -N -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/zzycwmx/CDN/master/superbench2.sh
+        done
+        bash ${DIR}/superbench2.sh
+        break
+#         clear
+#         out0 p "原作者已删除该脚本，请重新选择\n"
         ;;
     8)
         while [ ! -f ${DIR}/unixbench.sh ]; do
