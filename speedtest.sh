@@ -57,61 +57,61 @@ out0 () {
 #     id=$1
 # fi
 out0 s "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest\n"
-out0 r "7已修复，请清空残余文件后使用\n"
+out0 r "7,4 已修复，请清空残余文件后使用\n"
 while [ 1 -eq 1 ];do
-out1 y "-----------------------------\n"
+out1 y "------------------------------\n"
 out1 y "|"
-out0 y " 请选择需要测试的脚本序号:  "
+out0 y " 请选择需要测试的脚本序号:   "
 out1 y "|\n"
 out1 y "|"
-out1 b " 1. bench.sh                "
+out1 b " 1. bench.sh                 "
 out1 y "|\n"
 out1 y "|"
-out1 b " 2. LemonBench              "
+out1 b " 2. LemonBench               "
 out1 y "|\n"
 out1 y "|"
-out1 b " 3. superspeed              "
+out1 b " 3. superspeed               "
 out1 y "|\n"
 out1 y "|"
-out1 b " 4. superbench修复版        "
+out1 b " 4. superbench修复版- yzlijie"
 out1 y "|\n"
 out1 y "|"
-out1 b " 5. 91yuntest               "
+out1 b " 5. 91yuntest                "
 out1 y "|\n"
 out1 y "|"
-out1 b " 6. ZBench                  "
+out1 b " 6. ZBench                   "
 out1 y "|\n"
 out1 y "|"
-out1 b " 7. superbench修复+多节点版 "
+out1 b " 7. superbench修复+多节点版  "
 out1 y "|\n"
 out1 y "|"
-out1 b " 8. UnixBench               "
+out1 b " 8. UnixBench                "
 out1 y "|\n"
 out1 y "|"
-out1 b " 9. GeekBench5              "
+out1 b " 9. GeekBench5               "
 out1 y "|\n"
 out1 y "|"
-out1 b " 10.kos回程测试             "
+out1 b " 10.kos回程测试              "
 out1 y "|\n"
 out1 y "|"
-out1 b " 11.超内存测试              "
+out1 b " 11.超内存测试               "
 out1 y "|\n"
 out1 y "|"
-out1 b " 12.路由测试(需提供目标ip)  "
+out1 b " 12.路由测试(需提供目标ip)   "
 out1 y "|\n"
 out1 y "|"
-out1 r " 13.清空残余文件(保留大文件)"
+out1 r " 13.清空残余文件(保留大文件) "
 out1 y "|\n"
 out1 y "|"
-out1 r " 14.清空残余文件(全部清空)  "
+out1 r " 14.清空残余文件(全部清空)   "
 out1 y "|\n"
 out1 y "|"
-out1 r " 15.卸载kos                 "
+out1 r " 15.卸载kos                  "
 out1 y "|\n"
 out1 y "|"
-out1 r " 0. 退出                    "
+out1 r " 0. 退出                     "
 out1 y "|\n"
-out1 y "-----------------------------\n"
+out1 y "------------------------------\n"
 read id
 case $id in
     0)
@@ -136,13 +136,13 @@ case $id in
         break
         ;;
     4)
-        # while [ ! -f ${DIR}/superbench.sh ]; do
-        #     wget -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/msoayu56/speedtest/master/superbench.sh
-        # done
-        # bash ${DIR}/superbench.sh
-        # break
-        clear
-        out0 p "原作者已删除该脚本，请重新选择\n"
+        while [ ! -f ${DIR}/superbench.sh ]; do
+            wget -P ${DIR} --no-check-certificate https://raw.githubusercontent.com/yzlijie/SPDTST/e971a137a6ca698162a54234b762d28fd9ee9991/superbench.sh
+        done
+        bash ${DIR}/superbench.sh
+        break
+        # clear
+        # out0 p "原作者已删除该脚本，请重新选择\n"
         ;;
     5)
         while [ ! -f ./test.sh ]; do
