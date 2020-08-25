@@ -58,6 +58,7 @@ out0 () {
 # fi
 out0 s "使用方法: wget vpstest.cn/it && bash it 或 wget git.io/vpstest && bash vpstest\n"
 out0 r "7,4 已修复，请清空残余文件后使用\n"
+out0 b "添加sysbench脚本\n"
 while [ 1 -eq 1 ];do
 out1 y "------------------------------\n"
 out1 y "|"
@@ -97,7 +98,10 @@ out1 y "|"
 out1 b " 11.超内存测试               "
 out1 y "|\n"
 out1 y "|"
-out1 b " 12.路由测试(需提供目标ip)   "
+out1 b " 12.sysbench-cpu测试         "
+out1 y "|\n"
+out1 y "|"
+out1 b " 13.路由测试(需提供目标ip)   "
 out1 y "|\n"
 out1 y "|"
 out1 r " 13.清空残余文件(保留大文件) "
@@ -218,6 +222,17 @@ case $id in
         ;;
     12)
         if [ $release == "centos" ]; then
+            yum install epel-release -y
+            yum install sysbench -y
+            sysbench cpu run
+        else
+            apt-get install sysbench
+            sysbench cpu run
+        fi
+        break
+        ;;
+    13)
+        if [ $release == "centos" ]; then
             yum install wget unzip -y
         else
             apt-get -y update
@@ -231,7 +246,7 @@ case $id in
         ${DIR}/besttrace -q 1 ip
         break
         ;;
-    13)
+    14)
         rm -f ${DIR}/memtester*
         rm -f ${DIR}/kos
         rm -f ${DIR}/superbench*
@@ -252,7 +267,7 @@ case $id in
         clear
         out0 p "清理完成\n"
         ;;
-    14)
+    15)
         rm -rf ${DIR}
         rm -rf ${HOME}/superbench.log
         rm -rf ${HOME}/KOS*
