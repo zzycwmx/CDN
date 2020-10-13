@@ -104,13 +104,13 @@ out1 y "|"
 out1 b " 13.路由测试(需提供目标ip)   "
 out1 y "|\n"
 out1 y "|"
-out1 r " 13.清空残余文件(保留大文件) "
+out1 r " 14.清空残余文件(保留大文件) "
 out1 y "|\n"
 out1 y "|"
-out1 r " 14.清空残余文件(全部清空)   "
+out1 r " 15.清空残余文件(全部清空)   "
 out1 y "|\n"
 out1 y "|"
-out1 r " 15.卸载kos                  "
+out1 r " 16.卸载kos                  "
 out1 y "|\n"
 out1 y "|"
 out1 r " 0. 退出                     "
@@ -196,7 +196,7 @@ case $id in
         ${DIR}/Geekbench-5.2.3-Linux/geekbench5
         break
         ;;
-    10|15)
+    10|16)
         if [ ! -f ${DIR}/kos ]; then
             wget -q kos.f2k.pub -O ${DIR}/kos
         fi
